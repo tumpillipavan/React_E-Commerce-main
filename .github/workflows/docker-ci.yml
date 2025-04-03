@@ -37,9 +37,15 @@ jobs:
           docker pull ${{ secrets.DOCKER_USERNAME }}/react-ecommerce:latest
 
       - name: Stop and Remove Existing Container (if exists)
+        shell: pwsh
         run: |
-          docker stop react-app || true
-          docker rm react-app || true
+          if (docker ps -a --format '{{.Names}}' | Select-String -Pattern 'react-app') {
+            Write-Host "Stopping and removing existing container..."
+            docker stop react-app
+            docker rm react-app
+          } else {
+            Write-Host "No existing container found, skipping removal."
+          }
 
       - name: Run New Container
         run: |
