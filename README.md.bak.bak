@@ -1,0 +1,39 @@
+# Running the Project with Docker
+
+To run this project using Docker, follow the steps below:
+
+## Prerequisites
+
+Ensure you have the following installed on your system:
+
+- Docker version 22.13.1 or later
+- Docker Compose version 1.29.2 or later
+
+## Steps to Build and Run
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/ssahibsingh/React_E-Commerce
+   cd React_E-Commerce
+   ```
+
+2. Build and start the Docker containers:
+
+   ```bash
+   docker-compose up --build
+   ```
+
+3. Access the application in your browser at `http://localhost:3000`.
+
+## Configuration
+
+- The application runs on port `3000` as defined in the `docker-compose.yml` file.
+- Ensure any required environment variables are set in a `.env` file if needed.
+
+## Notes
+
+- The `Dockerfile` is optimized for production builds.
+- The `docker-compose.yml` file sets up a single service for the application.
+
+For further assistance, refer to the [Docker documentation](https://docs.docker.com/).
