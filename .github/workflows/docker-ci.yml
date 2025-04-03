@@ -21,11 +21,11 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t your-dockerhub-username/react-ecommerce:latest .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/react-ecommerce:latest .
 
       - name: Push Docker Image
         run: |
-          docker push your-dockerhub-username/react-ecommerce:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/react-ecommerce:latest
 
   deploy:
     needs: build-and-push
@@ -34,13 +34,13 @@ jobs:
     steps:
       - name: Pull Docker Image
         run: |
-          docker pull your-dockerhub-username/react-ecommerce:latest
+          docker pull ${{ secrets.DOCKER_USERNAME }}/react-ecommerce:latest
 
-      - name: Stop and Remove Existing Container
+      - name: Stop and Remove Existing Container (if exists)
         run: |
           docker stop react-app || true
           docker rm react-app || true
 
       - name: Run New Container
         run: |
-          docker run -d -p 3000:3000 --name react-app your-dockerhub-username/react-ecommerce:latest
+          docker run -d -p 3000:3000 --name react-app ${{ secrets.DOCKER_USERNAME }}/react-ecommerce:latest
