@@ -26,21 +26,7 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/react-ecommerce:latest
-
-  deploy:
-    needs: build-and-push
-    runs-on: self-hosted
-
-    steps:
-      - name: Pull Docker Image
-        run: |
-          docker pull ${{ secrets.DOCKER_USERNAME }}/react-ecommerce:latest
-
-      - name: Stop and Remove Existing Container (if exists)
-        run: |
-          docker stop react-app || true
-          docker rm react-app || true
-
       - name: Run New Container
         run: |
           docker run -d -p 3000:3000 --name react-app ${{ secrets.DOCKER_USERNAME }}/react-ecommerce:latest
+  
