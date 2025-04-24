@@ -1,4 +1,4 @@
-# Stage 1: Build the application
+# Stage 1: Build the 
 FROM node:22.13.1-slim AS builder
 
 # Set the working directory
