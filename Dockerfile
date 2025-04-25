@@ -1,4 +1,4 @@
-# Stage 1: Build the 
+# Stage 1: Bui
 FROM node:22.13.1-slim AS builder
 
 # Set the working directory
